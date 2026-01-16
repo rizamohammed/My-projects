@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly Weight Polls</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'home.js' %}"></script>
+
+    <style>
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+    <h1 class="home">Home</h1>
+    <div class="container">
+        <div class="title">
+            <p class="title">FlyWeight Polls</p>
+        </div>
+        <div class="content">
+            <div class="filter">
+                <div class="createpoll">
+                    <button class="createPoll" onclick="createPoll()"><b>CreatePoll</b></button>
+                    <!-- <h3 class="poll">Create Poll</h3> -->
+                </div>
+                <div class="checkboxes">
+
+                    <!-- <label for="filter" id="checkboxContainer" class="CheckBoxLabel"> -->
+                    <div class="CheckBoxLabel" id="checkboxContainer">
+
+                    </div>
+                    <br>
+
+                    <button class="button subBtn" name="filter" id="filterBtn" onclick="filterData()"><b>&nbsp Filter
+                            by
+                            Tags</b></button>
+
+                </div>
+            </div>
+            <div class="table" style="overflow-x: auto;">
+                <table border="1" class="t1" id="myTable">
+                    <tr class="head">
+                        <th>Number</th>
+                        <th class="poll">Poll Question</th>
+                        <th>Total Votes</th>
+                        <th>Tags</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+   
+    <script>
+    </script>
+</body>
+
+</html>

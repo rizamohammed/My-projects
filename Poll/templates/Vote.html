@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyWeight Polls</title>
+    <link rel="stylesheet" href="{% static 'vote.css' %}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+
+</head>
+
+<body>
+    <h1 class="vote">Vote On This Poll</h1>
+    <div class="container">
+        <div class="title">
+            <p class="title">FlyWeight Polls</p>
+        </div>
+        <div class="content">
+            <h3 id="reslt">
+                <center> {{ result }} </center>
+            </h3>
+            <h1 class="ques" id="quest"></h1><br>
+            <div class="voting">
+                <div class="radioBtn" id="radioBtn">
+                </div>
+                <br><button onclick="vote()"><b>Vote</b></button>
+            </div>
+            <div class="w3-panel w3-green w3-display-container" id="alertDiv">
+                <span onclick="this.parentElement.style.display='none'"
+                    class="w3-button w3-large w3-display-topright">&times;</span>
+                <h3 id="headAlert"></h3>
+                <p id="alertMsg"></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var QuestId = {{ qId }};
+        function createRadioBtn(data) {
+            for (let i in data["OptionVote"]) {
+                var para = document.createElement('p');
+                para.setAttribute("name",`${i}`);
+                var labelValue = document.createElement('label');
+                labelValue.innerHTML = ` ${i}`;
+                var inputValue = document.createElement('input');
+                inputValue.type = "radio";
+                inputValue.name = "options";
+                inputValue.setAttribute("value", i);
+                para.appendChild(inputValue);
+                para.appendChild(labelValue);
+                radioBtn.appendChild(para);
+            }
+        }
+
+        function loadData() {
+            $.getJSON(`/${QuestId}`, function (data) {
+                document.getElementById("quest").innerHTML = data["Question"];
+                createRadioBtn(data);
+            });
+        }
+
+        function vote() {
+            var value = $("input[type=radio][name=options]:checked").val();
+            if (value) {
+                dataDict = {
+                    "incrementOption": value
+                }
+                const myJSONData = JSON.stringify(dataDict);
+                $.ajax({
+                    url: window.location.href,
+                    type: "PUT",
+                    data: myJSONData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data, request, xhr) {
+                        // $('#alertDiv').show();
+                        alert(`Your Vote for ${value} added sucessfully.`);
+                        // document.getElementById("alertMsg").innerHTML = `Your Vote for ${value} added sucessfully.`;
+                        // document.getElementById("headAlert").innerHTML = "Success!";
+                    },
+                    error: function (error) {
+                        // $('#alertDiv').show();
+                        alert(`Your Vote for ${value} has not added. Refer console to know more regarding error.`);
+                        // document.getElementById("alertMsg").innerHTML = `Your Vote for ${value} has not added. Refer console to know more regarding error.`;
+                        document.getElementById("headAlert").innerHTML = "Failure!";
+                        console.log(error);
+                    }
+                });
+            }
+            else {
+                alert('Nothing is selected');
+            }
+        }
+        
+        window.onload = loadData;
+        // $(document).ready(function () {
+        //     $('#alertDiv').hide();
+        // });
+    </script>
+</body>
+
+</html>

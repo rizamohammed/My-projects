@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly Weight Polls</title>
+    <link rel="stylesheet" href="{% static 'createpoll.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+
+        div.questions {
+            display: flex;
+            flex-direction: column;
+            /* padding: 5px; */
+        }
+
+        div.bottom {
+            display: flex;
+            flex-direction: column;
+            /* padding-top: 5px; */
+        }
+        #alertDiv{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="createpoll">Create Poll</h1>
+    <div class="container">
+        <div class="title">
+            <p class="title">FlyWeight Polls</p>
+        </div>
+        <div class="content">
+           
+            <div class="w3-panel w3-green w3-display-container" id="alertDiv">
+                <span onclick="this.parentElement.style.display='none'"
+                    class="w3-button w3-large w3-display-topright">&times;</span>
+                <h3 id="headAlert"></h3>
+                <p id="alertMsg"></p>
+            </div>
+            <br>
+            <div class="questions">
+
+                <h2><b>Question</b></h2>
+                <input type="text" id="quest" name="question" placeholder="Type your poll question here..">
+
+                <h2><b>Answer Options</b></h2>
+                <div class="optionsdiv" id="options">
+                    <input type="text" id="op1" name="option1" placeholder="Option 1..">
+                    <input type="text" id="op2" name="option2" placeholder="Option 2..">
+                </div>
+                <br><br>
+                <button class="addopt" onclick="addOptions()"><b>Add Options</b></button>
+                <h2><b>Comma Seperated Tags</b></h2>
+                <input type="text" id="lname" name="lastname" placeholder="Tag1, Tag2, Tag3, ...">
+                <div class="button">
+                    <button class="createpoll" onclick="submit()"><b>Create Poll</b></button>
+                </div>
+            </div>
+            <br>
+            <!-- <div class="bottom"> -->
+           
+            <!-- </div> -->
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function addOptions() {
+
+            var matched = $("#options *");
+            var optPresent = matched.length;
+
+            //  Creating input boxes
+            var inputValue = document.createElement('input');
+            inputValue.type = "text";
+            inputValue.setAttribute("placeholder", `Option ${optPresent + 1}..`);
+            inputValue.setAttribute("name", `${optPresent + 1}`);
+            inputValue.setAttribute("id", `op${optPresent + 1}`);
+            options.appendChild(inputValue);
+
+        }
+
+        function submit() {
+            question = document.getElementById("quest").value;
+            var matched = $("#options *");
+            var optPresent = matched.length;
+            var options = {};
+            for (let i = 0; i < optPresent; i++) {
+                optValue = document.getElementById(`op${i + 1}`).value;
+                options[`${optValue}`] = 0;
+
+            }
+            var tags = document.getElementById("lname").value;
+            var tagLst = tags.split(',');
+            var Data = {
+                "Question": question,
+                "OptionVote": options,
+                "Tags": tagLst
+            };
+            const dataJson = JSON.stringify(Data);
+            console.log(dataJson);
+            $.ajax({
+                url: window.location.href,
+                type: "POST",
+                data: dataJson,
+                contentType: false,
+                processData: false,
+                success: function (data, request, xhr) {
+                    // alert("Sucess!");
+                    $('#alertDiv').show();
+                    document.getElementById("alertMsg").innerHTML = `You have Sucessfully created the Poll.`;
+                    document.getElementById("headAlert").innerHTML = "Success!";
+                },
+                error: function (error) {
+                    alert("error!");
+                    $('#alertDiv').show();
+                    document.getElementById("alertMsg").innerHTML = `Your poll has not been created. Refer console to know more regarding error.`;
+                    document.getElementById("headAlert").innerHTML = "Failure!";
+                    console.log(error);
+                }
+            });
+
+        }
+
+        $(document).ready(function () {
+            $('#alertDiv').hide();
+        });
+    </script>
+</body>
+
+</html>

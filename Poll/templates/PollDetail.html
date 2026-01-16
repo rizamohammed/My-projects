@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly Weight Polls</title>
+    <link rel="stylesheet" href="{% static 'polldetails.css' %}">
+    <style>
+        div.table_pie {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="polldetail">
+        <p>
+        <h1 class="polldetail">Poll Detail</h1>
+        </p>
+    </div>
+    <div class="container">
+        <div class="title">
+            <p class="title">FlyWeight Polls</p>
+        </div>
+        <div class="content">
+            <!-- H1 for question -->
+
+            <div class="leftContent">
+                <h1 id="quest"></h1><br>
+
+                <button onclick="votePoll()" id="vote"><b>Vote on the Pole</b></button>
+                <!-- <div class="leftbox"> -->
+                <div class="table_pie">
+                    <div class="table">
+                        <br>
+                        <table border="1" id="pollDataTable">
+                            <tr class="head">
+                                <th>Number</th>
+                                <th>Option</th>
+                                <th class="votes">Votes</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                </div>
+                <br>
+                <p><b>Tags:-</b><strong id="tagsTxt"></strong></p>
+                <!-- </div> -->
+            </div>
+            <div class="rightbox">
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+            </div>
+
+        </div>
+        <!-- <canvas></canvas> -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var qId = {{ questId }};
+        var xAxisValues = [];
+        var yAxisValues = [];
+
+
+        function arrangeDataTable(data) {
+            var optionsLst = [];
+            for (let i in data["OptionVote"]) {
+                optionsLst.push(i);
+                xAxisValues.push(i);
+                yAxisValues.push(data["OptionVote"][i]);
+            }
+            Diagram(yAxisValues);
+
+            for (let k = 0; k < optionsLst.length; k++) {
+                var table = document.getElementById("pollDataTable");
+                //  Creating the table row
+                var row = table.insertRow(k + 1);
+                row.className += "data";
+                // Creating 3 columns
+                var slNum = row.insertCell(0);
+                var option = row.insertCell(1);
+                var votes = row.insertCell(2);
+                // Entering values in columns
+                slNum.innerHTML = k + 1;
+                option.innerHTML = optionsLst[k];
+                votes.innerHTML = data["OptionVote"][`${optionsLst[k]}`];
+                var vt = data["OptionVote"][`${optionsLst[k]}`]
+            }
+        }
+
+        function loadData() {
+            $.getJSON(`/${qId}`, function (data) {
+                document.getElementById("quest").innerHTML = data["Question"];
+                document.getElementById("tagsTxt").innerHTML = `${data["Tags"]}`;
+                arrangeDataTable(data);
+            });
+        }
+
+        // function newColorFind(numOfColors) {
+        //     const arrayOfColorFunctions = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+        //     let randomColorString = '#';
+        //     let colours = [];
+        //     for (let x = 0; x < numOfColors; x++) {
+
+        //         let index = Math.floor(Math.random() * 16);
+        //         let value = arrayOfColorFunctions[index];
+
+        //         randomColorString += value;
+        //         colours.push(randomColorString);
+        //     }
+        //     return colours
+        // }
+        // newColorFind();
+
+
+        function Diagram(yAxisValues) {
+            var xValues = xAxisValues;
+            var yValues = yAxisValues;
+            var barColors = [
+                "#b91d47",
+                "#00aba9",
+                "#2b5797",
+                "#e8c3b9",
+                "#1e7145",
+                "#2f1459",
+                "#2b1095"
+            ];
+            new Chart("myChart", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        // data: yValues
+                        data: yValues,
+                        // console
+                    }]
+                },
+
+                options: {
+                    title: {
+                        display: true,
+                        text: "Diagram of The Poll "
+                    }
+                }
+            });
+        }
+
+        function votePoll() {
+            location.href = "vote/";
+
+        }
+
+        window.onload = loadData();
+    </script>
+
+
+
+</body>
+
+
+</html>
