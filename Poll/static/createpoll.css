@@ -1,0 +1,116 @@
+body{
+    background-color: rgb(209, 141, 209);
+    padding-left: 5em;
+    padding-right: 1em;
+}
+div.title{
+    background-color: black;
+    color: whitesmoke;
+    height: 160px;
+    width: 80%;
+    padding: 0.5em;
+    padding-left: 2em;
+    /* display: flex;
+    flex-direction: column; */
+    
+    /* position: relative;
+    bottom: 40px;
+    left: 0px; */
+}
+p.title{
+    color: whitesmoke;
+    font-size: 40px;
+    font-weight: bold;
+    /* padding: 5%; */
+}
+div.container{
+    border-style: double;
+    /* width: 90%; */
+    width: 90%;
+    /* min-width: 40em; */
+    background-color: rgb(171, 243, 236);
+    
+    /* min-height: 40em; */
+    /* padding-left: 30px; */
+    /* padding: 20%; */
+    /* padding-top: 0; */
+
+    /* position: relative;
+    bottom: 20px;
+    left: 40px; */
+}
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+div.questions {
+    border-radius: 5px;
+    background-color: rgb(99, 177, 207);
+    padding: 25px;
+    width: 40%;
+    /* position: relative; */
+    bottom: 50px;
+    border-radius: 60px;
+    display: flex;
+    flex-direction: column;
+}
+button.createpoll{
+    width: 150px;
+    height: 50px;
+    position:relative;
+    /* padding-left: 5%; */
+    /* position: relative;
+    bottom: 50px;
+    left:190px;
+     */
+}
+div.content{
+    padding: 50px 25px 25px 50px;
+    display: flex;
+    flex-direction: column;
+}
+/*  */
+h1.createpoll{
+    padding-left: 1em;
+    /* position: relative;
+    bottom: 5px;
+    left: 50px; */
+}
+button.addopt{
+    width: 120px;
+    height: 30px;
+}
+
+div.text{
+    /* position: relative;
+    bottom: 445px;
+    left: 420px; */
+    padding: 0;
+    width: 240px;
+    color: red;
+   
+}
+div.button{
+    padding-left: 30%;
+}

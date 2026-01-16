@@ -1,0 +1,95 @@
+*{
+    margin: 0%;
+    padding : 0% 0 0 0;
+}
+
+body{
+    padding: 5%;
+    padding-top: 0%;
+/* max-width: ; */
+
+}
+
+div.red{
+    height: 30px;
+    width: 60px;
+    background-color: red;
+    color: black;
+    text-align: center;
+}
+div.orange{
+    height: 30px;
+    width: 60px;
+    background-color: orange;
+    color: black;
+    text-align: center;
+}
+p.title{
+    color: whitesmoke;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+div.container{
+    border-style: double;
+    background-color: rgb(171, 243, 236);
+
+
+}
+body{
+    background-color: rgb(209, 141, 209);
+}
+div.title{
+    background-color: black;
+    color: whitesmoke;
+    height: 160px;
+    width: 80%;
+
+}
+
+
+div.content{
+    /* padding: 5% 0 0 5%; */
+    /* height: 440px; */
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+    /* width: 10em; */
+}
+p.title{
+    padding: 5%;    
+}
+button{
+    height: 40px;
+    width: 120px;
+
+}
+tr.data{
+    height: 80px;
+}
+tr.head{
+    height: 30px;
+}
+table{
+    text-align: center;
+    /* max-width: 800px; */
+    min-width: 30em;
+}
+p.votes{
+    position: relative;
+    top: 120px;
+    text-decoration: brown;
+
+
+}
+
+
+.piechart {
+    position: relative;
+    background-image: conic-gradient(
+    /* Total 22 votes, red(12 votes) = [(360/22)*12]degree */
+    red 196.3636deg,
+    orange 0);
+}
+    

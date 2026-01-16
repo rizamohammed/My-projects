@@ -1,0 +1,231 @@
+*{
+    margin: 0%;
+    padding : 0%
+    
+
+}
+body{
+    background-color: rgb(209, 141, 209);
+    /* padding: 30px; */
+    padding-top: 6px;
+    padding-left: 35px;
+}
+div.content{
+    display: flex;
+    flex-direction: row;
+}
+div.filter{
+    display: flex;
+    flex-direction: column;
+}
+div.title{
+    background-color: black;
+    color: whitesmoke;
+    height: 160px;
+    width: 85%;
+    
+}
+h1.home{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* top: 15px;
+    left: 40px; */
+}
+
+p.title{
+    color: whitesmoke;
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+    top: 50px;
+    left: 50px;
+
+}
+div.checkboxes{
+    background-color: black;
+    color: whitesmoke;
+    width: 150px; 
+    /* height: 450px; */
+    position: relative;
+    top:50px;
+    left:30px;
+    padding: 20pt;
+    /* display: flex;align-items: center;justify-content: center;flex-direction: column; width: 100%; text-align: center; margin: 10% 0; min-height: 200px; background-color: rgba(33, 33, 33, .3); align-items: center;  */
+    
+}
+
+div.container{
+    border-style: double;
+    position: relative;
+    width: 95%;
+    min-width: 100vh;
+    /* padding: 15px; */
+    min-height: 88vh;
+    display: flex;
+    flex-direction:column;
+    /* min-height: 100%; */
+    background-color: rgb(171, 243, 236);
+   
+}
+div.createpoll{
+    /* height : 40px;
+    width : 200px; */
+    /* background-color:rgb(62, 138, 168); */
+    text-align: center;
+    color: white;
+    /* background-color: black; */
+    position: relative;
+    top: 30px;
+    left: 30px;
+ 
+  
+}
+.button{
+    width:130px;
+    height:45px;
+}
+.rectangle {
+    height: 10px;
+    width: 80%;
+    background-color: blue;
+}
+th.poll{
+    /* width:auto; */
+    width:300px;
+}
+div.table{
+    padding: 30px;
+    /* padding-top: 30px; */
+    padding-left: 70px;
+    display: flex;
+    flex-direction: column;
+   
+}
+table{
+    /* border-style: groove; */
+    border-style:inherit;
+    /* border-collapse: collapse; */
+    width: 100%;
+}
+table.t1{
+    /* width : 800px; */
+    width: fit-content;
+    min-width: 50vw;
+    text-align: center;
+    position: relative;
+    /* display: flex;
+    flex-direction: column; */
+}
+tr.data{
+    height:80px;
+    
+}
+tr.head{
+    height:30px;
+    background-color: black;
+    color: whitesmoke;
+    /* text-align: center; */
+}
+tr:hover {
+    background-color: powderblue;
+    color: black;
+    font-size: 17px;
+    font-weight: bolder;
+}
+td {
+    text-align: left;
+    padding: 8px;
+  }
+p.inLinePara {
+    padding: 5px;
+}
+
+
+
+/* dsdf */
+.subBtn {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.subBtn {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.subBtn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+button.createPoll{
+    width: 200px;
+    height: 50px;
+    background-color: blue;
+    color: whitesmoke;
+    border: 2px solid rgb(248, 85, 85);
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 50px;
+    /* opacity: 2; */
+
+}
+button.createPoll:hover{
+    background-color: rgb(248, 85, 85);
+    /* opacity: 2; */
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 50px;
+    /* height: 45px; */
+}
+
+div.CheckBoxLabel {
+    display: flex;
+    flex-direction: column;
+}
+/*  Link Css */
+/* unvisited link */
+a:link {
+    color: black;
+    text-decoration: none;
+    /* font-weight: bold; */
+    
+  }
+
+a:visited {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+  
+/* mouse over link */
+a:hover {
+    color: red;
+    /* background-color: aliceblue; */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+  
+/* selected link */
+a:active {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
